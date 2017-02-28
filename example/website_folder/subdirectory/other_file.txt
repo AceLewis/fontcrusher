@@ -1,0 +1,1 @@
+Other icons 'fa fa-angle-right', 'fa fa-comment-o'.
