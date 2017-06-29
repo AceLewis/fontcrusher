@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='fontcrusher',
-    version='0.1.0',
+    version='0.1.1',
     description='A python module for reducing the size of fonts by removing unnessasary glyphs',
     long_description='A python module for reducing the size of fonts by removing unnessasary glyphs, it can also reduce the size of css used for fonts',
     keywords=['fontcrusher', 'font', 'subset', 'minify', 'compress', 'font subset'],

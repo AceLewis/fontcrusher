@@ -16,7 +16,7 @@ def get_glyphs_from_file(file_name):
 def load_and_crush_font(font_path, glyphs):
     "Load a font then compress it to keep only needed glyphs"
     original_font = load_the_font(font_path)
-    return keep_these_glyphs(original_font, glyphs)
+    return crush_font(original_font, glyphs)
 
 
 def crush_font(font_object, glyphs):
