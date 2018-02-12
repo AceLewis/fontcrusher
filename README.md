@@ -8,7 +8,9 @@ FontCrusher uses FontTools so therefore requires Python 2.7, 3.4 or later.
 
 The package is listed in the Python Package Index (PyPI), so you can install it with pip:
 
-    pip install fontcrusher
+``` python
+pip install fontcrusher
+```
 
 ## Terminology
 * Icon font - A font that contains many icons that can easily be embedded on a webpage e.g [Font Awesome](http://fontawesome.io/)
@@ -35,8 +37,10 @@ Before the compression the `.ttf` file size was 165,548 Bytes and the `.css` fil
 
 The main tools is `crush_font` this is the tool that actually removes all unwanted glyphs from a font object. Example use;
 
-    import fontcrusher
-    crushed_font = fontcrusher.crush_font(font_object, glyph_names)
+``` python
+import fontcrusher
+crushed_font = fontcrusher.crush_font(font_object, glyph_names)
+```
 
 To find the `glyph_names` automatically the following tools can be used.
 
@@ -44,11 +48,13 @@ To find the `glyph_names` automatically the following tools can be used.
 
 This tool finds all the glyphs you have used within a project/website automatically.
 
-	from fontcrusher.find_used_glyphs import *
-	regex_for_find = get_regex_for_glyph('font_awesome')
-	include = [[r'.\website_folder\**\*', {'recursive': True}]]
-	exclude = [[r'.\website_folder\subdirectory\exclude_file.txt']]
-	used_glyphs = find_used_glyphs(include, regex_for_find, exclude_args=exclude)
+``` python
+from fontcrusher.find_used_glyphs import *
+regex_for_find = get_regex_for_glyph('font_awesome')
+include = [[r'.\website_folder\**\*', {'recursive': True}]]
+exclude = [[r'.\website_folder\subdirectory\exclude_file.txt']]
+used_glyphs = find_used_glyphs(include, regex_for_find, exclude_args=exclude)
+```
 
 #### - get\_glyph\_name
 Once you know the glyphs you have used you need to find out their glyph name.
@@ -62,19 +68,22 @@ One problem with this is the names of glyphs are not always consistent e.g in [F
 
 `get_glyph_name` can be used to first find the Unicode value of all the `used_glyphs` from their CSS names, after their Unicode value is known the actual glyphs name can be found.
 
-
-    from fontcrusher.get_glyph_name import *
-    unicode_values = get_unicode_value_list('fa', used_glyphs, css_file).values()
-    glyph_names = get_glyph_name_list(font_object, unicode_values).values()
+``` python
+from fontcrusher.get_glyph_name import *
+unicode_values = get_unicode_value_list('fa', used_glyphs, css_file).values()
+glyph_names = get_glyph_name_list(font_object, unicode_values).values()
+```
 
 #### - css_crush
 
 Not only would you want to crush your font but you probably want to compress the CSS file for the font too. The CSS files of icon fonts contain information for each glyph, this removes the information for all unused glyphs it does not also minimize the CSS file.
 
-    from fontcrusher import css_crush
-    css_file = css_crush.read_file(r'.\website_folder\font-awesome.min.css')
-    crushed_css = css_crush.remove_glyphs_from_css(css_file, 'font_awesome', used_glyphs)
-    css_crush.write_file(r'.\website_folder\font-awesome.crushed.css', crushed_css)
+``` python
+from fontcrusher import css_crush
+css_file = css_crush.read_file(r'.\website_folder\font-awesome.min.css')
+crushed_css = css_crush.remove_glyphs_from_css(css_file, 'font_awesome', used_glyphs)
+css_crush.write_file(r'.\website_folder\font-awesome.crushed.css', crushed_css)
+```
 
 ## Benefits of FontCrusher
 
